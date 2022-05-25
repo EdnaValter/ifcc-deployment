@@ -1,5 +1,15 @@
-﻿@{
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LandingPage>
+
+@{
 	Layout = "Layout.cshtml";
+	
+
+	var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate).Take(1);
+
 }
 
     <main>
@@ -23,7 +33,7 @@
                   lorem ipsum lorem ipsum lorem ipsum
                 </p>
               </div>
-              <a class="cardbutton card--bg-color-blue" href="">Visit</a>
+              <a class="cardbutton card--bg-color-blue" href="/main-site/">Visit</a>
             </div>
 
             <div class="card">
@@ -98,13 +108,25 @@
           <div class="grid">
             <div class="flex">
               <img class="newsImg" src="./assets/img/webinar.png" alt="" />
-              <div class="newsInfo">
-                <h2>Latest news</h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Tempora nam esse reiciendis?
+                            <div class="newsInfo">
+              
+
+<ul>
+	@foreach (var item in selection)
+	{
+		<li>
+			<a href="@item.Url()">
+			    <h2>@item.Name()</h2>
+			     <p>
+                    @item.Value("introText")
                 </p>
                 <button class="newsButton">Read more</button>
+			</a>
+		</li>
+	}
+</ul>
+
+
               </div>
             </div>
             <div>

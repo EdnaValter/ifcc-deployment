@@ -1,43 +1,49 @@
-﻿@{
+﻿
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<MainSite>
+    
+
+
+@{
 	Layout = "Layout.cshtml";
+	var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate).Take(2);
+    
+
+
+
 }
 
     <main>
-      <!-- <section>
-        <div class="flex section-content">
-          <div class="fr1"></div>
-          <h1 class="fr2">Overoverskrift</h1>
-        </div>
-        <div class="flex section-content">
-          <img class="fr1" src="https://placekitten.com/200/200" alt="" />
-          <div class="fr2">
-            <h2>Haha overskrift</h2>
-            <p>Loooool skroverift</p>
-          </div>
-        </div>
-      </section> -->
-
       <section class="recent-articles">
+
         <div class="article-grid">
           <div></div>
           <h1>Recent articles</h1>
         </div>
 
-        <a href="#" class="article-grid">
-          <img src="https://placekitten.com/500/200" alt="" />
-          <div>
-            <h2>Haha overskrift</h2>
-            <p>Loooool skroverift</p>
-          </div>
-        </a>
+<ul>
+	@foreach (var item in selection)
+	{
+	
 
-        <a href="#" class="article-grid">
-          <img src="https://placekitten.com/200/500 " alt="" />
-          <div>
-            <h2>Haha overskrift</h2>
-            <p>Loooool skroverift</p>
+		<li>
+			<a href="@item.Url()" class="article-grid">
+			
+            <img src="">
+
+            <div>
+                <h2>@item.Name</h2>
+            <p>@item.Value("introText")</p>
+
           </div>
-        </a>
+			</a>
+		</li>
+	}
+</ul>
+
       </section>
 
       <section class="event-highlights">
