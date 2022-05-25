@@ -1,0 +1,43 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Blog>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Layout.cshtml";
+}
+
+<div class="container">
+
+			<!-- Featured blogpost -->
+
+			<!-- Latest blog posts -->
+			<div class="row section">
+				<div class="col-md-12">
+					<h3>Latest stories</h3>
+				</div>
+			</div>
+
+			<!-- Blog Post Query goes here. -->
+			
+			
+@{
+	var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+<ul>
+	@foreach (var item in selection)
+	{
+		<li>
+
+			<a href="@item.Url()">@item.Name()</a>
+			<p>@item.Value("bodyText")</p>
+            
+		
+		</li>
+	}
+</ul>
+
+
+            
+</div>
