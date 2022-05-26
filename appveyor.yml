@@ -5,3 +5,4 @@ cache:
 before_build: nuget restore
 build: 
     publish_wap: true
+    
