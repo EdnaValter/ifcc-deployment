@@ -5,3 +5,8 @@ cache:
 before_build: nuget restore
 build: 
     publish_wap: true
+
+artifacts:
+
+  # pushing a single file
+  - path: ifcc-project.zip
