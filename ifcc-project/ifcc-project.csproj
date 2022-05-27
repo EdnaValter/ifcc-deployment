@@ -24,6 +24,7 @@
     <PropertyGroup>
         <RazorCompileOnBuild>false</RazorCompileOnBuild>
         <RazorCompileOnPublish>false</RazorCompileOnPublish>
+        <UserSecretsId>ea8f31ff-2ff5-4aa5-ac5a-66bf0fe8508f</UserSecretsId>
     </PropertyGroup>
 
 </Project>
