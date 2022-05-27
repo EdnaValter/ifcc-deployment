@@ -1,0 +1,152 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LandingPage>
+
+@{
+	Layout = "Layout.cshtml";
+	
+
+	var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate).Take(1);
+
+}
+
+    <main>
+      <section class="menu">
+        <div class="wrapper">
+          <h1 class="textstyle">
+            International Federation of Clinical Chemistry
+          </h1>
+          <div class="grid">
+            <div class="card">
+              <div class="card__head card--bg-color-blue card-heading">
+                <h3
+                  class="card__head--text-center card__head--fontweight card__head--color-white"
+                >
+                  Main site
+                </h3>
+              </div>
+              <div class="card__body card__body--fontsize">
+                <p>
+                  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                  lorem ipsum lorem ipsum lorem ipsum
+                </p>
+              </div>
+              <a class="cardbutton card--bg-color-blue" href="/main-site/">Visit</a>
+            </div>
+
+            <div class="card">
+              <div class="card__head card--bg-color-orange card-heading">
+                <h3
+                  class="card__head--text-center card__head--fontweight card__head--color-white"
+                >
+                  Learning platform
+                </h3>
+              </div>
+              <div class="card__body">
+                <p>
+                  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                  lorem ipsum lorem ipsum lorem ipsum
+                </p>
+              </div>
+              <a class="cardbutton card--bg-color-orange" href="">Visit</a>
+            </div>
+            <div class="card">
+              <div class="card__head card--bg-color-green card-heading">
+                <h3
+                  class="card__head--text-center card__head--fontweight card__head--color-white"
+                >
+                  Publication news
+                </h3>
+              </div>
+              <div class="card__body">
+                <p>
+                  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                  lorem ipsum lorem ipsum lorem ipsum
+                </p>
+              </div>
+              <a class="cardbutton card--bg-color-green" href="">Visit</a>
+            </div>
+            <div class="card">
+              <div class="card__head card--bg-color-red card-heading">
+                <h3
+                  class="card__head--text-center card__head--fontweight card__head--color-white"
+                >
+                  References
+                </h3>
+              </div>
+              <div class="card__body">
+                <p>
+                  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                  lorem ipsum lorem ipsum lorem ipsum
+                </p>
+              </div>
+              <a class="cardbutton card--bg-color-red" href="">Visit</a>
+            </div>
+            <div class="card">
+              <div class="card__head card--bg-color-olive card-heading">
+                <h3
+                  class="card__head--text-center card__head--fontweight card__head--color-white"
+                >
+                  Resources
+                </h3>
+              </div>
+              <div class="card__body">
+                <p>
+                  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+                  lorem ipsum lorem ipsum lorem ipsum
+                </p>
+              </div>
+              <a class="cardbutton card--bg-color-olive" href="">Visit</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="wrapper">
+        <section class="newsSection">
+          <div class="grid">
+            <div class="flex">
+              <img class="newsImg" src="./assets/img/webinar.png" alt="" />
+                            <div class="newsInfo">
+              
+
+<ul>
+	@foreach (var item in selection)
+	{
+		<li>
+			<a href="@item.Url()">
+			    <h2>@item.Name()</h2>
+			     <p>
+                    @item.Value("introText")
+                </p>
+                <button class="newsButton">Read more</button>
+			</a>
+		</li>
+	}
+</ul>
+
+
+              </div>
+            </div>
+            <div>
+              <div class="flex">
+                <img
+                  class="newsImg"
+                  src="./assets/img/data_driven.jpg"
+                  alt=""
+                />
+                <div class="newsInfo">
+                  <h2>Latest events</h2>
+                  <p class="">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempora nam esse reiciendis?
+                  </p>
+                  <button class="newsButton">Read more</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>

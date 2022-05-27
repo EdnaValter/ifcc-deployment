@@ -1,0 +1,89 @@
+﻿
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<MainSite>
+    
+
+
+@{
+	Layout = "Layout.cshtml";
+	var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate).Take(2);
+    
+
+
+
+}
+
+    <main>
+      <section class="recent-articles">
+
+        <div class="article-grid">
+          <div></div>
+          <h1>Recent articles</h1>
+        </div>
+
+<ul>
+	@foreach (var item in selection)
+	{
+	
+
+		<li>
+			<a href="@item.Url()" class="article-grid">
+			
+            <img src="">
+
+            <div>
+                <h2>@item.Name</h2>
+            <p>@item.Value("introText")</p>
+
+          </div>
+			</a>
+		</li>
+	}
+</ul>
+
+      </section>
+
+      <section class="event-highlights">
+        <div class="article-grid">
+          <div></div>
+          <h1>Event highlights</h1>
+        </div>
+
+        <a href="#" class="article-grid">
+          <img src="https://placekitten.com/400/300" alt="" />
+          <div>
+            <h2>Haha overskrift</h2>
+            <p>Loooool skroverift</p>
+          </div>
+        </a>
+
+        <a href="#" class="article-grid">
+          <img src="https://placekitten.com/300/400 " alt="" />
+          <div>
+            <h2>Haha overskrift</h2>
+            <p>Loooool skroverift</p>
+          </div>
+        </a>
+      </section>
+
+      <section class="key-partners">
+        <h1>Key partners</h1>
+        <div class="partner-grid">
+          <a href="#">
+            <img src="https://placekitten.com/250/250" alt="" />
+          </a>
+          <a href="#">
+            <img src="https://placekitten.com/250/250" alt="" />
+          </a>
+          <a href="#">
+            <img src="https://placekitten.com/250/250" alt="" />
+          </a>
+          <a href="#">
+            <img src="https://placekitten.com/250/250" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
