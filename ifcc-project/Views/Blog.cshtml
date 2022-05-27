@@ -4,10 +4,6 @@
 @using Umbraco.Cms.Core.Models.PublishedContent;
 @{
 	Layout = "Layout.cshtml";
-		var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
-    .ChildrenOfType("blogItem")
-    .Where(x => x.IsVisible())
-    .OrderByDescending(x => x.CreateDate);
 }
 
 <div class="container">
@@ -22,7 +18,14 @@
 			</div>
 
 			<!-- Blog Post Query goes here. -->
-
+			
+			
+@{
+	var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
 <ul>
 	@foreach (var item in selection)
 	{
@@ -30,8 +33,7 @@
 
 			<a href="@item.Url()">@item.Name()</a>
 			<p>@item.Value("bodyText")</p>
-            <div style="background-image: url('@item.BlogImage.Url()'); height:200px; width:300px;background-size: cover;"></div>
-
+            
 		
 		</li>
 	}

@@ -3,6 +3,7 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<MainSite>
     
 
+
 @{
 	Layout = "Layout.cshtml";
 	var selection = Umbraco.Content(Guid.Parse("a647fd76-344f-4006-a666-c579d6fd849b"))
@@ -10,6 +11,7 @@
     .Where(x => x.IsVisible())
     .OrderByDescending(x => x.CreateDate).Take(2);
     
+
 
 
 }
@@ -30,13 +32,11 @@
 		<li>
 			<a href="@item.Url()" class="article-grid">
 			
-            <img src="/media/k5ghakve/webinar.png">
+            <img src="">
 
             <div>
                 <h2>@item.Name</h2>
-                <p>@item.Value("introText")</p>
-                
-                
+            <p>@item.Value("introText")</p>
 
           </div>
 			</a>
